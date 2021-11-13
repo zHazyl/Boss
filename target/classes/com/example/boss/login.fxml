@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
+<?import com.jfoenix.controls.JFXButton?>
 
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.boss.LoginController">
    <children>
@@ -50,14 +51,14 @@
                   <Font size="11.0" />
                </font>
             </Label>
-            <Button layoutX="135.0" layoutY="287.0" mnemonicParsing="false" onAction="#login" prefHeight="35.0" prefWidth="82.0" style="-fx-background-color: #ffc107; -fx-text-fill: #455a64; -fx-font-weight: bold; -fx-font-family: JetBrains Mono; -fx-font-size: 18px;" text="login">
+            <JFXButton layoutX="135.0" layoutY="287.0" mnemonicParsing="false" onAction="#login" prefHeight="35.0" prefWidth="82.0" style="-fx-background-color: #ffc107; -fx-text-fill: #455a64; -fx-font-weight: bold; -fx-font-family: JetBrains Mono; -fx-font-size: 18px;" text="login">
                <font>
                   <Font size="18.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
-            </Button>
+            </JFXButton>
          </children></AnchorPane>
    </children>
 </HBox>

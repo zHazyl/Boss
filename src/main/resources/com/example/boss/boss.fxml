@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -10,18 +10,18 @@
 
 <HBox fx:id="hbox_parent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.boss.BossController">
    <children>
-      <AnchorPane prefHeight="400.0" prefWidth="53.0" style="-fx-background-color: #ffc107;">
+      <AnchorPane prefHeight="400.0" prefWidth="43.0" style="-fx-background-color: #ffc107;">
          <children>
             <ImageView fitHeight="31.0" fitWidth="33.0" layoutX="14.0" layoutY="355.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@outw.png" />
                </image>
             </ImageView>
-            <Button layoutX="14.0" layoutY="355.0" mnemonicParsing="false" onAction="#logout" prefHeight="31.0" prefWidth="31.0" style="-fx-background-color: transparent;">
+            <JFXButton focusTraversable="false" layoutY="355.0" mnemonicParsing="false" onAction="#logout" prefHeight="31.0" prefWidth="58.0" style="-fx-background-color: transparent; -fx-text-fill: transparent;" textFill="#455a64">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
-            </Button>
+            </JFXButton>
             <Pane fx:id="choicea" layoutY="93.0" prefHeight="38.0" prefWidth="58.0" style="-fx-background-color: #ffc120;" />
             <Pane fx:id="choice1" layoutX="-7.0" layoutY="93.0" prefHeight="38.0" prefWidth="14.0" style="-fx-background-color: #ffc120;" />
             <ImageView fx:id="imgv_clerk" fitHeight="31.0" fitWidth="31.0" layoutX="11.0" layoutY="96.0" pickOnBounds="true" preserveRatio="true">
@@ -29,23 +29,23 @@
                   <Image url="@../../../a0.png" />
                </image>
             </ImageView>
-            <Button fx:id="clerk_button" layoutX="11.0" layoutY="96.0" mnemonicParsing="false" onAction="#choiceClerk" prefHeight="31.0" prefWidth="31.0" style="-fx-background-color: transparent;">
+            <JFXButton fx:id="clerk_button" focusTraversable="false" layoutX="-1.0" layoutY="96.0" mnemonicParsing="false" onAction="#choiceClerk" prefHeight="31.0" prefWidth="58.0" style="-fx-background-color: transparent; -fx-text-fill: transparent;" textFill="#455a64">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
-            </Button>
-            <Pane fx:id="choicea1" layoutY="159.0" prefHeight="38.0" prefWidth="66.0" style="-fx-background-color: #ffc120;" />
+            </JFXButton>
+            <Pane fx:id="choicea1" layoutY="159.0" prefHeight="38.0" prefWidth="58.0" style="-fx-background-color: #ffc120;" />
             <Pane fx:id="choice11" layoutX="-6.0" layoutY="159.0" prefHeight="38.0" prefWidth="14.0" style="-fx-background-color: #ffc120;" />
             <ImageView fx:id="imgv_stat" fitHeight="31.0" fitWidth="31.0" layoutX="14.0" layoutY="162.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../b0.png" />
                </image>
             </ImageView>
-            <Button layoutX="20.0" layoutY="162.0" mnemonicParsing="false" onAction="#choiceStat" prefHeight="31.0" prefWidth="31.0" style="-fx-background-color: transparent;">
+            <JFXButton focusTraversable="false" layoutX="-1.0" layoutY="162.0" mnemonicParsing="false" onAction="#choiceStat" prefHeight="31.0" prefWidth="58.0" style="-fx-background-color: transparent; -fx-text-fill: transparent;" textFill="#455a64">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
-            </Button>
+            </JFXButton>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="ap_parent" prefHeight="400.0" prefWidth="556.0" />
