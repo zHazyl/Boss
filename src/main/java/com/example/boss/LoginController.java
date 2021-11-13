@@ -9,6 +9,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -86,6 +88,16 @@ public class LoginController {
         }
 
         return login;
+    }
+
+    @FXML
+    HBox p;
+    @FXML
+    AnchorPane out;
+
+    public void exit(ActionEvent event) {
+        Stage stage = (Stage) out.getScene().getWindow();
+        stage.close();
     }
 
 }
