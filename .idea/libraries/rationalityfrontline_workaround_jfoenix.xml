@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="rationalityfrontline.workaround.jfoenix" type="repository">
+    <properties maven-id="org.rationalityfrontline.workaround:jfoenix:17.0.1" />
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/rationalityfrontline/workaround/jfoenix/17.0.1/jfoenix-17.0.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
