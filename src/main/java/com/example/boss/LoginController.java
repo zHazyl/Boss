@@ -12,6 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+import org.controlsfx.glyphfont.FontAwesome;
 
 import java.io.IOException;
 import java.sql.Connection;

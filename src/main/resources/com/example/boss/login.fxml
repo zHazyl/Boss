@@ -25,7 +25,8 @@
                   <Image url="@project-management.png" />
                </image>
             </ImageView>
-         </children></AnchorPane>
+         </children>
+      </AnchorPane>
       <AnchorPane fx:id="out" prefHeight="400.0" prefWidth="354.0">
          <children>
             <ImageView fitHeight="26.0" fitWidth="25.0" layoutX="65.0" layoutY="206.0" pickOnBounds="true" preserveRatio="true">
@@ -64,6 +65,7 @@
                </image>
             </ImageView>
             <JFXButton focusTraversable="false" layoutX="314.0" layoutY="11.0" onAction="#exit" prefHeight="24.0" prefWidth="25.0" ripplerFill="#455a64" style="-fx-text-fill: transparent;" />
-         </children></AnchorPane>
+         </children>
+      </AnchorPane>
    </children>
 </HBox>
