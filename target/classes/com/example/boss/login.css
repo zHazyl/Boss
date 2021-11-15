@@ -1,0 +1,24 @@
+.root {
+    -fx-background-color:transparent;
+    -fx-background-radius:10;
+}
+
+
+.text-field {
+    -fx-border-width: 0px 0px 1px 0px;
+    -fx-background-color: transparent;
+    -fx-border-color: #455a64;
+    -fx-text-fill: #455a64;
+    -fx-font-family: "JetBrains Mono";
+    -fx-font-weight: bold;
+}
+
+.text-field:hover {
+    -fx-border-color: #ffc107;
+}
+
+.text-field:focused {
+    -fx-border-color: #ffc107;
+    -fx-border-width: 0px 0px 2px 0px;
+}
+

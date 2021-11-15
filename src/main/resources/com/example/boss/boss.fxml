@@ -23,7 +23,7 @@
                </cursor>
             </JFXButton>
             <Pane fx:id="choicea" layoutY="93.0" prefHeight="38.0" prefWidth="58.0" style="-fx-background-color: #ffc120;" />
-            <Pane fx:id="choice1" layoutX="-7.0" layoutY="93.0" prefHeight="38.0" prefWidth="14.0" style="-fx-background-color: #ffc120;" />
+            <Pane fx:id="choice1" layoutX="-1.0" layoutY="93.0" prefHeight="38.0" prefWidth="8.0" style="-fx-background-color: #ffc120;" />
             <ImageView fx:id="imgv_clerk" fitHeight="31.0" fitWidth="31.0" layoutX="11.0" layoutY="96.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../a0.png" />
@@ -35,7 +35,7 @@
                </cursor>
             </JFXButton>
             <Pane fx:id="choicea1" layoutY="159.0" prefHeight="38.0" prefWidth="58.0" style="-fx-background-color: #ffc120;" />
-            <Pane fx:id="choice11" layoutX="-6.0" layoutY="159.0" prefHeight="38.0" prefWidth="14.0" style="-fx-background-color: #ffc120;" />
+            <Pane fx:id="choice11" layoutY="159.0" prefHeight="38.0" prefWidth="8.0" style="-fx-background-color: #ffc120;" />
             <ImageView fx:id="imgv_stat" fitHeight="31.0" fitWidth="31.0" layoutX="14.0" layoutY="162.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../b0.png" />

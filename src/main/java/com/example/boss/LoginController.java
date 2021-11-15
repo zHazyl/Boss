@@ -1,5 +1,6 @@
 package com.example.boss;
 
+import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,7 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
-import org.controlsfx.glyphfont.FontAwesome;
+import de.jensd.fx.glyphs.fontawesome.*;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -31,6 +32,10 @@ public class LoginController {
     @FXML
     Label label_fail_login;
 
+    @FXML
+    AnchorPane parent;
+
+
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -41,12 +46,10 @@ public class LoginController {
 
     public void displayStage(ActionEvent event, String file_fxml) throws IOException {
 
-        root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource(file_fxml)));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.setResizable(false);
-        stage.show();
+        Node loader = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource(file_fxml)));
+        loader.setLayoutX(280);
+        loader.setLayoutY(148);
+        parent.getChildren().set(0, loader);
 
     }
 
