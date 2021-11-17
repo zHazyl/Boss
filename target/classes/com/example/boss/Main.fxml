@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="741.0" prefWidth="1047.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.boss.MainController">
+   <children>
+      <AnchorPane fx:id="ac_start" layoutY="151.0" prefHeight="439.0" prefWidth="1123.0" style="-fx-background-color: #ffc107;">
+         <children>
+            <Label layoutX="30.0" layoutY="176.0" prefHeight="44.0" prefWidth="450.0" style="-fx-font-weight: bold;" text="Welcome to your world!" textFill="#455a64" wrapText="true">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <Label layoutX="30.0" layoutY="220.0" prefHeight="44.0" prefWidth="450.0" style="-fx-font-weight: bold;" text="Management everything for you" textFill="#f9f9f9" wrapText="true">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <AnchorPane fx:id="view" layoutX="478.0" prefHeight="439.0" prefWidth="615.0" />
+         </children></AnchorPane>
+      <AnchorPane fx:id="ac" layoutX="643.0" layoutY="107.0" prefHeight="528.0" prefWidth="450.0" style="-fx-background-color: transparent;" />
+   </children>
+</AnchorPane>

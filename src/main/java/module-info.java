@@ -9,6 +9,7 @@ module com.example.cashier {
     requires mysql.connector.java;
     requires com.jfoenix;
     requires de.jensd.fx.glyphs.fontawesome;
+    requires AnimateFX;
 
     opens com.example.boss to javafx.fxml;
     exports com.example.boss;

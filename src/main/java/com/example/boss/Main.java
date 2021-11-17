@@ -14,15 +14,16 @@ import java.util.Objects;
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("login.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Main.fxml"));
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root);
-        String css = Objects.requireNonNull(Main.class.getResource("login.css")).toExternalForm();
+        String css = Objects.requireNonNull(Main.class.getResource("main.css")).toExternalForm();
 
         stage.initStyle(StageStyle.TRANSPARENT);
         scene.setFill(Color.TRANSPARENT);
         scene.getStylesheets().add(css);
 
+        stage.centerOnScreen();
         stage.setScene(scene);
         stage.show();
     }
