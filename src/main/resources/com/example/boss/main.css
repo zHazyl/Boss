@@ -28,6 +28,6 @@
 }
 
 #ac_start {
-    -fx-background-radius:5;
+    -fx-background-radius:5px 0px 5px 5px;
 }
 

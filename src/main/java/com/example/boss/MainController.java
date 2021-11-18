@@ -2,6 +2,7 @@ package com.example.boss;
 
 import animatefx.animation.BounceIn;
 import animatefx.animation.Shake;
+import animatefx.animation.Tada;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -25,7 +27,7 @@ public class MainController implements Initializable {
 
     @FXML
     private AnchorPane ac;
-    private Parent fxml;
+    private FXMLLoader fxml;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -36,16 +38,26 @@ public class MainController implements Initializable {
 //        });
 
 
+        changeAC("signIn.fxml");
+    }
+
+    SignInController signIn;
+
+    public void changeAC(String filename) {
         try {
-            fxml = FXMLLoader.load(getClass().getResource("signIn.fxml"));
+            fxml = new FXMLLoader(getClass().getResource(filename));
+            signIn = fxml.getController();
+
             ac.getChildren().removeAll();
-            ac.getChildren().setAll(fxml);
-            ac.setStyle("-fx-background-color:transparent");
+            ac.getChildren().setAll((Parent)fxml.load());
         } catch (IOException ioException) {
             ioException.printStackTrace();
         }
     }
 
-
+    public void close(ActionEvent e) {
+        Stage stage = (Stage) ac.getScene().getWindow();
+        stage.close();
+    }
 
 }

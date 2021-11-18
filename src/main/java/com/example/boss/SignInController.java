@@ -1,11 +1,13 @@
 package com.example.boss;
 
 import animatefx.animation.*;
+import com.jfoenix.controls.JFXButton;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -20,7 +22,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ResourceBundle;
 
-public class SignInController implements Initializable{
+public class SignInController implements Initializable {
 
     @FXML
     TextField tf_username;
@@ -34,6 +36,11 @@ public class SignInController implements Initializable{
     @FXML
     AnchorPane ac;
 
+    @FXML
+    private JFXButton button_login;
+
+    MainController main;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         new Tada(tf_username.getParent()).play();
@@ -46,6 +53,20 @@ public class SignInController implements Initializable{
             TranslateTransition t = new TranslateTransition(Duration.seconds(1), ac.getParent());
             t.setToX(-613);
             t.play();
+
+            t.setOnFinished((e) -> {
+                try {
+                    FXMLLoader fxml = new FXMLLoader(getClass().getResource("infor.fxml"));
+                    ac.getChildren().removeAll();
+                    ac.getChildren().setAll((Parent) fxml.load());
+                    new Tada(ac).play();
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
+            });
+
+
+
         } else {
             setLabel_fail_login();
             //new Tada(ac).play();
