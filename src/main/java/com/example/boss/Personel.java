@@ -18,6 +18,33 @@ public class Personel {
     Date born;
     String address;
     double salary;
+    int dayOff;
+    int dayLate;
+    double bonus;
+
+    public int getDayOff() {
+        return dayOff;
+    }
+
+    public void setDayOff(int dayOff) {
+        this.dayOff = dayOff;
+    }
+
+    public int getDayLate() {
+        return dayLate;
+    }
+
+    public void setDayLate(int dayLate) {
+        this.dayLate = dayLate;
+    }
+
+    public double getBonus() {
+        return bonus;
+    }
+
+    public void setBonus(double bonus) {
+        this.bonus = bonus;
+    }
 
     public double getSalary() {
         return salary;
@@ -123,7 +150,7 @@ public class Personel {
         this.address = address;
     }
 
-    public Personel(String id, String username, String password, String email, Date timeJoin, String firstName, String lastName, String phone, String position, String gender, Date born, String address, double salary) {
+    public Personel(String id, String username, String password, String email, Date timeJoin, String firstName, String lastName, String phone, String position, String gender, Date born, String address, double salary, int dayOff, int dayLate, double bonus) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -137,5 +164,8 @@ public class Personel {
         this.born = born;
         this.address = address;
         this.salary = salary;
+        this.dayOff = dayOff;
+        this.dayLate = dayLate;
+        this.bonus = bonus;
     }
 }

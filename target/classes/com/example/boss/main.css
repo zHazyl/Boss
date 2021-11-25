@@ -71,3 +71,7 @@
 #born{
     -fx-background-color:transparent;
 }
+
+#ac_work {
+    -fx-background-radius: 10;
+}

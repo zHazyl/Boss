@@ -127,9 +127,13 @@ public class MainController implements Initializable {
 
         refreshTable();
         infomarket.setVisible(false);
+        ac_work.setVisible(false);
         //ac_add.setVisible(false);
 
     }
+
+    @FXML
+    AnchorPane ac_work;
 
     SignInController signIn;
 
@@ -159,11 +163,7 @@ public class MainController implements Initializable {
             t.play();
 
             t.setOnFinished((e) -> {
-                infomarket.setVisible(true);
-                new FadeIn(infomarket).play();
-                new FadeOut(pane_cover).play();
-                pane_cover.setVisible(false);
-                new Tada(infomarket).play();
+                choiceMember();
 
             });
 
@@ -260,7 +260,10 @@ public class MainController implements Initializable {
                         resultSet.getString("gender"),
                         resultSet.getDate("born"),
                         resultSet.getString("address"),
-                        resultSet.getDouble("salary")));
+                        resultSet.getDouble("salary"),
+                        resultSet.getInt("days_off"),
+                        resultSet.getInt("days_late"),
+                        resultSet.getDouble("bonus")));
                 personelTable.setItems(PersonelList);
             }
             preparedStatement.close();
@@ -304,6 +307,7 @@ public class MainController implements Initializable {
     Pane pane_cover;
 
     public void open_add(ActionEvent e) {
+        ac_work.setVisible(false);
         tf_id.setDisable(false);
         tf_user.setDisable(false);
         clear_tf();
@@ -321,7 +325,7 @@ public class MainController implements Initializable {
     public void add(ActionEvent e) {
 
         String verifyAdd = "INSERT INTO userCashier (username, password, id, email, first_name, last_name, phone, position, gender, address, born) VALUES (?,?,?,?,?,?,?,?,?,?,?);";
-
+        String work = "INSERT INTO salaryPersonel (id) VALUES (" + tf_id.getText() + ");";
 
 
         try {
@@ -337,6 +341,8 @@ public class MainController implements Initializable {
             preparedStatement.setString(9, tf_gender.getText());
             preparedStatement.setString(10, tf_addr.getText());
             preparedStatement.setString(11, born.getValue().toString());
+            preparedStatement.execute();
+            preparedStatement = connection.prepareStatement(work);
             preparedStatement.execute();
 
         } catch (Exception ex) {
@@ -356,9 +362,12 @@ public class MainController implements Initializable {
         }
         String id = del.id;
         String delete = "DELETE FROM `jdbc-video`.`userCashier` WHERE id = " + id + ";";
+        String work = "DELETE FROM `jdbc-video`.`salaryPersonel` WHERE id = " + id + ";";
 
         try {
             preparedStatement = connection.prepareStatement(delete);
+            preparedStatement.execute();
+            preparedStatement = connection.prepareStatement(work);
             preparedStatement.execute();
         } catch (SQLException exception) {
 
@@ -375,6 +384,7 @@ public class MainController implements Initializable {
     JFXButton button_update;
 
     public void open_edit(ActionEvent event) {
+        ac_work.setVisible(false);
         tf_id.setDisable(true);
         tf_user.setDisable(true);
         new FadeIn(ac_add).play();
@@ -428,6 +438,7 @@ public class MainController implements Initializable {
     }
 
     public void logout(ActionEvent event) {
+        ac_work.setVisible(false);
         label_fail_login.setText("");
         new FadeOut(ac_add).play();
         infomarket.setVisible(false);
@@ -444,6 +455,112 @@ public class MainController implements Initializable {
         tf_username.clear();
         pf_password.clear();
 
+    }
+
+    @FXML
+    Pane memberPane;
+    @FXML
+    Pane calculatorPane;
+
+    public void choiceMember() {
+        memberPane.setStyle("-fx-background-color:#ffc107;-fx-background-radius: 5px 5px 0px 0px;");
+        calculatorPane.setStyle("-fx-background-color:#455a64;-fx-background-radius: 5px 5px 0px 0px;");
+        infomarket.setVisible(true);
+        new FadeIn(infomarket).play();
+        new FadeOut(pane_cover).play();
+        pane_cover.setVisible(false);
+        new Tada(infomarket).play();
+    }
+
+    public void choiceCalculator() {
+        calculatorPane.setStyle("-fx-background-color:#ffc107;-fx-background-radius: 5px 5px 0px 0px;");
+        memberPane.setStyle("-fx-background-color:#455a64;-fx-background-radius: 5px 5px 0px 0px;");
+        infomarket.setVisible(false);
+
+    }
+
+    @FXML
+    JFXButton memberButton;
+    @FXML
+    JFXButton calculatorButton;
+
+    public void handleChoice(ActionEvent event) {
+        if (event.getSource() == memberButton) {
+            choiceMember();
+        }
+        if (event.getSource() == calculatorButton) {
+            choiceCalculator();
+        }
+    }
+
+    @FXML
+    TextField tf_salary;
+    @FXML
+    TextField tf_off;
+    @FXML
+    TextField tf_late;
+    @FXML
+    TextField tf_bonus;
+
+    public void open_work() {
+        ac_work.setVisible(true);
+        new FadeIn(ac_work).play();
+        Personel update = personelTable.getSelectionModel().getSelectedItem();
+        if (update == null) {
+            update = personelTable.getItems().get(0);
+        }
+        double a;
+
+        tf_salary.setText(String.valueOf(update.salary));
+        tf_off.setText(String.valueOf(update.dayOff));
+        tf_late.setText(String.valueOf(update.dayLate));
+        tf_bonus.setText(String.valueOf(update.bonus));
+
+    }
+
+    public void updateWork(ActionEvent event) {
+        Personel work = personelTable.getSelectionModel().getSelectedItem();
+        if (work == null) {
+            work = personelTable.getItems().get(0);
+        }
+        String id = work.id;
+
+        String month = Integer.toString(LocalDate.now().getMonthValue());
+        String totalSalary = Double.toString(totalSalary());
+        String total = " UPDATE salaryPersonel SET `" + month + "` = " + totalSalary + " WHERE id = " + id + ";";
+        System.out.println(total);
+//        String verifyAdd = "UPDATE userCashier SET salary = " +
+//                tf_salary.getText() + ", days_off = " +
+//                tf_off.getText() + ", days_late = " +
+//                tf_late.getText() + ", bonus = " +
+//                tf_bonus.getText() + " WHERE id = " + id + ";";
+
+
+
+        try {
+            preparedStatement = connection.prepareStatement(total);
+            preparedStatement.execute();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            ex.getCause();
+        }
+
+    }
+
+    public double totalSalary() {
+        double salary = Double.parseDouble(tf_salary.getText());
+        int off = Integer.parseInt(tf_off.getText());
+        int late = Integer.parseInt(tf_late.getText());
+        double bonus = Double.parseDouble(tf_bonus.getText());
+        return salary - off * 35 - late * 10 + bonus;
+    }
+
+    @FXML
+    Label lb_total;
+
+    public void totalCal(ActionEvent event) {
+        lb_total.setText(String.valueOf(totalSalary()));
     }
 
 }
