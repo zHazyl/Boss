@@ -12,6 +12,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
@@ -324,7 +326,7 @@ public class MainController implements Initializable {
 
     public void add(ActionEvent e) {
 
-        String verifyAdd = "INSERT INTO userCashier (username, password, id, email, first_name, last_name, phone, position, gender, address, born) VALUES (?,?,?,?,?,?,?,?,?,?,?);";
+        String verifyAdd = "INSERT INTO userCashier (username, password, id, email, first_name, last_name, phone, position, gender, address, born, salary) VALUES (?,?,?,?,?,?,?,?,?,?,?, 1000);";
         String work = "INSERT INTO salaryPersonel (id) VALUES (" + tf_id.getText() + ");";
 
 
@@ -454,6 +456,7 @@ public class MainController implements Initializable {
 
         tf_username.clear();
         pf_password.clear();
+        closeManagement();
 
     }
 
@@ -487,9 +490,12 @@ public class MainController implements Initializable {
     public void handleChoice(ActionEvent event) {
         if (event.getSource() == memberButton) {
             choiceMember();
+            closeManagement();
+            closeManagement();
         }
         if (event.getSource() == calculatorButton) {
             choiceCalculator();
+            openManagement();
         }
     }
 
@@ -503,6 +509,7 @@ public class MainController implements Initializable {
     TextField tf_bonus;
 
     public void open_work() {
+        lb_total.setText("");
         ac_work.setVisible(true);
         new FadeIn(ac_work).play();
         Personel update = personelTable.getSelectionModel().getSelectedItem();
@@ -528,7 +535,7 @@ public class MainController implements Initializable {
         String month = Integer.toString(LocalDate.now().getMonthValue());
         String totalSalary = Double.toString(totalSalary());
         String total = " UPDATE salaryPersonel SET `" + month + "` = " + totalSalary + " WHERE id = " + id + ";";
-        System.out.println(total);
+        //System.out.println(total);
 //        String verifyAdd = "UPDATE userCashier SET salary = " +
 //                tf_salary.getText() + ", days_off = " +
 //                tf_off.getText() + ", days_late = " +
@@ -546,6 +553,8 @@ public class MainController implements Initializable {
             ex.getCause();
         }
 
+
+
     }
 
     public double totalSalary() {
@@ -561,6 +570,101 @@ public class MainController implements Initializable {
 
     public void totalCal(ActionEvent event) {
         lb_total.setText(String.valueOf(totalSalary()));
+    }
+
+    @FXML
+    LineChart<String, Number> progressChart;
+    ObservableList<Month> monthProgress = null;
+
+    public void loadProgress() {
+
+        monthProgress = FXCollections.observableArrayList();
+        String profit = "SELECT * FROM `jdbc-video`.progress where type = 'profit';";
+        String turnover = "SELECT * FROM `jdbc-video`.progress where type = 'turnover';";
+        ResultSet pro;
+        ResultSet turn;
+
+        try {
+            PreparedStatement p = connection.prepareStatement(profit);
+            PreparedStatement t = connection.prepareStatement(turnover);
+
+            pro = p.executeQuery();
+            turn = t.executeQuery();
+            pro.next();
+            turn.next();
+            for (int i = 1; i <= 12; ++i) {
+                monthProgress.add(new Month(turn.getDouble(Integer.toString(i)), pro.getDouble(Integer.toString(i))));
+            }
+        } catch (SQLException ex) {
+
+        }
+
+        progressChart.getData().clear();
+
+        XYChart.Series<String, Number> turnoverSeries = new XYChart.Series<String, Number>();
+        turnoverSeries.getData().add(new XYChart.Data<String, Number>("Jan", monthProgress.get(0).turnover));
+        turnoverSeries.getData().add(new XYChart.Data<String, Number>("Feb", monthProgress.get(1).turnover));
+        turnoverSeries.getData().add(new XYChart.Data<String, Number>("Mar", monthProgress.get(2).turnover));
+        turnoverSeries.getData().add(new XYChart.Data<String, Number>("Apr", monthProgress.get(3).turnover));
+        turnoverSeries.getData().add(new XYChart.Data<String, Number>("May", monthProgress.get(4).turnover));
+        turnoverSeries.getData().add(new XYChart.Data<String, Number>("Jun", monthProgress.get(5).turnover));
+        turnoverSeries.getData().add(new XYChart.Data<String, Number>("Jul", monthProgress.get(6).turnover));
+        turnoverSeries.getData().add(new XYChart.Data<String, Number>("Aug", monthProgress.get(7).turnover));
+        turnoverSeries.getData().add(new XYChart.Data<String, Number>("Sep", monthProgress.get(8).turnover));
+        turnoverSeries.getData().add(new XYChart.Data<String, Number>("Oct", monthProgress.get(9).turnover));
+        turnoverSeries.getData().add(new XYChart.Data<String, Number>("Nov", monthProgress.get(10).turnover));
+        turnoverSeries.getData().add(new XYChart.Data<String, Number>("Dec", monthProgress.get(11).turnover));
+        turnoverSeries.setName("Turnover");
+
+        XYChart.Series<String, Number> profitSeries = new XYChart.Series<String, Number>();
+        profitSeries.getData().add(new XYChart.Data<String, Number>("Jan", monthProgress.get(0).profit));
+        profitSeries.getData().add(new XYChart.Data<String, Number>("Feb", monthProgress.get(1).profit));
+        profitSeries.getData().add(new XYChart.Data<String, Number>("Mar", monthProgress.get(2).profit));
+        profitSeries.getData().add(new XYChart.Data<String, Number>("Apr", monthProgress.get(3).profit));
+        profitSeries.getData().add(new XYChart.Data<String, Number>("May", monthProgress.get(4).profit));
+        profitSeries.getData().add(new XYChart.Data<String, Number>("Jun", monthProgress.get(5).profit));
+        profitSeries.getData().add(new XYChart.Data<String, Number>("Jul", monthProgress.get(6).profit));
+        profitSeries.getData().add(new XYChart.Data<String, Number>("Aug", monthProgress.get(7).profit));
+        profitSeries.getData().add(new XYChart.Data<String, Number>("Sep", monthProgress.get(8).profit));
+        profitSeries.getData().add(new XYChart.Data<String, Number>("Oct", monthProgress.get(9).profit));
+        profitSeries.getData().add(new XYChart.Data<String, Number>("Nov", monthProgress.get(10).profit));
+        profitSeries.getData().add(new XYChart.Data<String, Number>("Dec", monthProgress.get(11).profit));
+        profitSeries.setName("Profit");
+
+        progressChart.getData().addAll(turnoverSeries, profitSeries);
+    }
+
+    @FXML
+    Label month;
+    @FXML
+    TextField tf_salary_p;
+    @FXML
+    TextField tf_import;
+    @FXML
+    TextField tf_tax;
+    @FXML
+    TextField tf_other;
+    @FXML
+    AnchorPane ac_manage;
+    @FXML
+    AnchorPane ac_progress;
+    public void openManagement() {
+        loadProgress();
+        int mo = LocalDate.now().getMonthValue();
+        Month m = monthProgress.get(mo - 1);
+        month.setText(Integer.toString(mo));
+        tf_import.setText(Double.toString(m.importTotal));
+        tf_salary_p.setText(Double.toString(m.personnelSalary));
+        tf_tax.setText(Double.toString(m.tax));
+        tf_other.setText(Double.toString(m.other));
+        ac_progress.setVisible(true);
+        ac_manage.setVisible(true);
+
+    }
+
+    public void closeManagement() {
+        ac_progress.setVisible(false);
+        ac_manage.setVisible(false);
     }
 
 }

@@ -2,6 +2,9 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
@@ -40,7 +43,7 @@
                         <TableColumn fx:id="emailCol" prefWidth="224.0" text="Email" />
                     </columns>
                   </TableView>
-                  <Label layoutX="427.0" layoutY="17.0" text="Personel list">
+                  <Label layoutX="437.0" layoutY="17.0" text="Personnel list">
                      <font>
                         <Font name="System Bold" size="25.0" />
                      </font>
@@ -75,7 +78,17 @@
                         <Font name="System Bold" size="13.0" />
                      </font>
                   </JFXButton>
-                  <AnchorPane prefHeight="439.0" prefWidth="639.0" style="-fx-background-color: #ffc107;" visible="false" />
+                  <AnchorPane fx:id="ac_progress" prefHeight="439.0" prefWidth="639.0" style="-fx-background-color: #ffc107;" visible="false">
+                     <children>
+                        <LineChart fx:id="progressChart" layoutX="12.0" layoutY="25.0" prefHeight="400.0" prefWidth="616.0" title="PROGRESS">
+                          <xAxis>
+                            <CategoryAxis side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis side="LEFT" />
+                          </yAxis>
+                        </LineChart>
+                     </children></AnchorPane>
                   <Pane fx:id="pane_cover" prefHeight="439.0" prefWidth="639.0" style="-fx-background-color: #ffc107;" />
                </children></AnchorPane>
          </children></AnchorPane>
@@ -93,12 +106,22 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </JFXButton>
-      <Pane layoutX="822.0" layoutY="126.0" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: #455a64#455a64; -fx-background-radius: 5 5 0 0;">
+      <Pane layoutX="754.0" layoutY="126.0" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: #455a64#455a64; -fx-background-radius: 5 5 0 0;">
          <children>
             <FontAwesomeIconView fill="#f9f9f9" glyphName="SIGN_OUT" layoutX="24.0" layoutY="19.0" size="20" />
          </children>
       </Pane>
-      <JFXButton focusTraversable="false" layoutX="822.0" layoutY="126.0" onAction="#logout" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: transparent; -fx-text-fill: transparent;" text="X" textFill="#f9f9f9">
+      <JFXButton focusTraversable="false" layoutX="754.0" layoutY="126.0" onAction="#logout" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: transparent; -fx-text-fill: transparent;" text="X" textFill="#f9f9f9">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </JFXButton>
+      <Pane fx:id="calculatorPane1" layoutX="822.0" layoutY="126.0" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: #455a64#455a64; -fx-background-radius: 5 5 0 0;">
+         <children>
+            <FontAwesomeIconView fill="#f9f9f9" glyphName="APPLE" layoutX="25.0" layoutY="18.0" size="17" />
+         </children>
+      </Pane>
+      <JFXButton fx:id="calculatorButton1" focusTraversable="false" layoutX="822.0" layoutY="126.0" onAction="#handleChoice" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: transparent; -fx-text-fill: transparent;" text="X" textFill="#f9f9f9">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -272,6 +295,95 @@
                   <Font size="10.0" />
                </font>
             </JFXButton>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="ac_manage" layoutX="14.0" layoutY="107.0" prefHeight="528.0" prefWidth="450.0" style="-fx-background-color: #455a64;" visible="false">
+         <children>
+            <Label fx:id="title_label11" layoutX="80.0" layoutY="25.0" style="-fx-font-weight: bold;" text="Management" textFill="#f9f9f9">
+               <font>
+                  <Font size="40.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="button_add11" focusTraversable="false" layoutX="69.0" layoutY="445.0" onAction="#add" prefHeight="51.0" prefWidth="312.0" style="-fx-background-color: ffc107; -fx-font-weight: bold; -fx-font-size: 20px;" text="add" textFill="#455a64">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="button_update11" focusTraversable="false" layoutX="71.0" layoutY="445.0" prefHeight="51.0" prefWidth="312.0" style="-fx-background-color: ffc107; -fx-font-weight: bold; -fx-font-size: 20px;" text="update" textFill="#455a64">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </JFXButton>
+            <Label layoutX="66.0" layoutY="180.0" style="-fx-font-weight: bold;" text="Import:" textFill="#f9f9f9">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="66.0" layoutY="229.0" style="-fx-font-weight: bold;" text="Salary personnel:" textFill="#f9f9f9">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="66.0" layoutY="277.0" style="-fx-font-weight: bold;" text="Tax:" textFill="#f9f9f9">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="tf_import" alignment="CENTER_RIGHT" focusTraversable="false" layoutX="147.0" layoutY="173.0" prefHeight="39.0" prefWidth="217.0">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </TextField>
+            <Label layoutX="371.0" layoutY="180.0" style="-fx-font-weight: bold;" text="\$" textFill="#f9f9f9">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="371.0" layoutY="229.0" style="-fx-font-weight: bold;" text="\$" textFill="#f9f9f9">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="tf_salary_p" alignment="CENTER_RIGHT" focusTraversable="false" layoutX="268.0" layoutY="222.0" prefHeight="39.0" prefWidth="94.0">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </TextField>
+            <Label layoutX="371.0" layoutY="277.0" style="-fx-font-weight: bold;" text="\$" textFill="#f9f9f9">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="tf_tax" alignment="CENTER_RIGHT" focusTraversable="false" layoutX="121.0" layoutY="270.0" prefHeight="39.0" prefWidth="243.0">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </TextField>
+            <Label layoutX="66.0" layoutY="324.0" style="-fx-font-weight: bold;" text="Other:" textFill="#f9f9f9">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER_RIGHT" layoutX="371.0" layoutY="324.0" style="-fx-font-weight: bold;" text="\$" textFill="#f9f9f9">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="tf_other" alignment="CENTER_RIGHT" focusTraversable="false" layoutX="152.0" layoutY="317.0" prefHeight="39.0" prefWidth="217.0">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </TextField>
+            <Label layoutX="66.0" layoutY="115.0" style="-fx-font-weight: bold;" text="Month:" textFill="#f9f9f9">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="month" layoutX="166.0" layoutY="115.0" style="-fx-font-weight: bold;" text="month" textFill="#f9f9f9">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>
