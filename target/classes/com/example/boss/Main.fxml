@@ -34,14 +34,14 @@
             <AnchorPane fx:id="view" layoutX="462.0" prefHeight="439.0" prefWidth="645.0">
                <children>
                   <TableView fx:id="personelTable" layoutX="15.0" layoutY="61.0" prefHeight="365.0" prefWidth="616.0">
-                    <columns>
-                      <TableColumn fx:id="idCol" prefWidth="42.0" text="ID" />
-                      <TableColumn fx:id="firstNameCol" prefWidth="138.0" text="First name" />
+                     <columns>
+                        <TableColumn fx:id="idCol" prefWidth="42.0" text="ID" />
+                        <TableColumn fx:id="firstNameCol" prefWidth="138.0" text="First name" />
                         <TableColumn fx:id="lastNameCol" prefWidth="75.0" text="Name" />
                         <TableColumn fx:id="genderCol" prefWidth="68.0" text="Gender" />
                         <TableColumn fx:id="positionCol" prefWidth="81.0" text="Position" />
                         <TableColumn fx:id="emailCol" prefWidth="224.0" text="Email" />
-                    </columns>
+                     </columns>
                   </TableView>
                   <Label layoutX="437.0" layoutY="17.0" text="Personnel list">
                      <font>
@@ -81,12 +81,12 @@
                   <AnchorPane fx:id="ac_progress" prefHeight="439.0" prefWidth="639.0" style="-fx-background-color: #ffc107;" visible="false">
                      <children>
                         <LineChart fx:id="progressChart" layoutX="12.0" layoutY="25.0" prefHeight="400.0" prefWidth="616.0" title="PROGRESS">
-                          <xAxis>
-                            <CategoryAxis side="BOTTOM" />
-                          </xAxis>
-                          <yAxis>
-                            <NumberAxis side="LEFT" />
-                          </yAxis>
+                           <xAxis>
+                              <CategoryAxis side="BOTTOM" />
+                           </xAxis>
+                           <yAxis>
+                              <NumberAxis side="LEFT" />
+                           </yAxis>
                         </LineChart>
                      </children></AnchorPane>
                   <Pane fx:id="pane_cover" prefHeight="439.0" prefWidth="639.0" style="-fx-background-color: #ffc107;" />

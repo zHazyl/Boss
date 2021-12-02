@@ -579,25 +579,20 @@ public class MainController implements Initializable {
     public void loadProgress() {
 
         monthProgress = FXCollections.observableArrayList();
-        String profit = "SELECT * FROM `jdbc-video`.progress where type = 'profit';";
-        String turnover = "SELECT * FROM `jdbc-video`.progress where type = 'turnover';";
-        ResultSet pro;
-        ResultSet turn;
+        String monthst = "SELECT * FROM `jdbc-video`.month;";
+        ResultSet monthList;
 
         try {
-            PreparedStatement p = connection.prepareStatement(profit);
-            PreparedStatement t = connection.prepareStatement(turnover);
-
-            pro = p.executeQuery();
-            turn = t.executeQuery();
-            pro.next();
-            turn.next();
-            for (int i = 1; i <= 12; ++i) {
-                monthProgress.add(new Month(turn.getDouble(Integer.toString(i)), pro.getDouble(Integer.toString(i))));
+            PreparedStatement mre = connection.prepareStatement(monthst);
+            monthList = mre.executeQuery();
+            while (monthList.next()) {
+                monthProgress.add(new Month(monthList.getDouble(3), monthList.getDouble(1), monthList.getDouble(5), monthList.getDouble(2), monthList.getDouble(4), monthList.getDouble(6)));
             }
+            //new Month(monthList.getDouble(2), monthList.getDouble(0), monthList.getDouble(4), monthList.getDouble(1),
         } catch (SQLException ex) {
 
         }
+
 
         progressChart.getData().clear();
 
@@ -637,13 +632,13 @@ public class MainController implements Initializable {
     @FXML
     Label month;
     @FXML
-    TextField tf_salary_p;
+    Label lb_salary;
     @FXML
-    TextField tf_import;
+    Label lb_import;
     @FXML
-    TextField tf_tax;
+    Label lb_tax;
     @FXML
-    TextField tf_other;
+    Label lb_other;
     @FXML
     AnchorPane ac_manage;
     @FXML
@@ -653,10 +648,10 @@ public class MainController implements Initializable {
         int mo = LocalDate.now().getMonthValue();
         Month m = monthProgress.get(mo - 1);
         month.setText(Integer.toString(mo));
-        tf_import.setText(Double.toString(m.importTotal));
-        tf_salary_p.setText(Double.toString(m.personnelSalary));
-        tf_tax.setText(Double.toString(m.tax));
-        tf_other.setText(Double.toString(m.other));
+        lb_import.setText(Double.toString(m.importTotal));
+        lb_salary.setText(Double.toString(m.personnelSalary));
+        lb_tax.setText(Double.toString(m.tax));
+        lb_other.setText(Double.toString(m.other));
         ac_progress.setVisible(true);
         ac_manage.setVisible(true);
 
