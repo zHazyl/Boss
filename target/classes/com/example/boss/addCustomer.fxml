@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="ac_add" prefHeight="528.0" prefWidth="450.0" style="-fx-background-color: #455a64;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.boss.AddCustomerController">
+   <children>
+      <Label fx:id="title_label" layoutX="115.0" layoutY="32.0" style="-fx-font-weight: bold;" text="Add member" textFill="#f9f9f9">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tf_user" focusTraversable="false" layoutX="37.0" layoutY="233.0" prefHeight="24.0" prefWidth="374.0" promptText="Username" />
+      <TextField fx:id="tf_pass" focusTraversable="false" layoutX="38.0" layoutY="280.0" prefHeight="24.0" prefWidth="374.0" promptText="Password" />
+      <TextField fx:id="tf_fn" focusTraversable="false" layoutX="40.0" layoutY="326.0" prefHeight="24.0" prefWidth="206.0" promptText="First-name" />
+      <TextField fx:id="tf_ln" focusTraversable="false" layoutX="249.0" layoutY="326.0" prefHeight="24.0" prefWidth="165.0" promptText="Last-name" />
+      <JFXButton fx:id="button_add" focusTraversable="false" layoutX="69.0" layoutY="445.0" onAction="#add" prefHeight="51.0" prefWidth="312.0" style="-fx-background-color: ffc107; -fx-font-weight: bold; -fx-font-size: 20px;" text="add" textFill="#455a64">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </JFXButton>
+      <TextField fx:id="tf_id" focusTraversable="false" layoutX="37.0" layoutY="187.0" prefHeight="24.0" prefWidth="374.0" promptText="ID" />
+      <Pane layoutX="369.0" layoutY="14.0" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: #455a64#455a64; -fx-background-radius: 5 5 0 0;">
+         <children>
+            <FontAwesomeIconView fill="#f9f9f9" glyphName="CLOSE" layoutX="25.0" layoutY="18.0" size="17" />
+         </children>
+      </Pane>
+      <JFXButton focusTraversable="false" layoutX="369.0" layoutY="14.0" onAction="#close" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: transparent; -fx-text-fill: transparent;" text="X" textFill="#f9f9f9">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>

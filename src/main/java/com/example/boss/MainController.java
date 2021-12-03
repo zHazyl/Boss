@@ -12,13 +12,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import org.controlsfx.control.action.Action;
 
@@ -26,6 +29,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.time.LocalDate;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
 
@@ -80,6 +84,8 @@ public class MainController implements Initializable {
     @FXML
     private AnchorPane infomarket;
 
+    @FXML
+    private AnchorPane ac_vip;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -131,6 +137,15 @@ public class MainController implements Initializable {
         infomarket.setVisible(false);
         ac_work.setVisible(false);
         //ac_add.setVisible(false);
+        loadProgress();
+
+
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("vip.fxml"));
+        try {
+            ac_vip.getChildren().add(fxmlLoader.load());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -326,7 +341,7 @@ public class MainController implements Initializable {
 
     public void add(ActionEvent e) {
 
-        String verifyAdd = "INSERT INTO userCashier (username, password, id, email, first_name, last_name, phone, position, gender, address, born, salary) VALUES (?,?,?,?,?,?,?,?,?,?,?, 1000);";
+        String verifyAdd = "INSERT INTO userCashier (username, password, id, email, first_name, last_name, phone, position, gender, address, born, salary) VALUES (?,?,?,?,?,?,?,?,?,?,?, 5000000);";
         String work = "INSERT INTO salaryPersonel (id) VALUES (" + tf_id.getText() + ");";
 
 
@@ -468,6 +483,7 @@ public class MainController implements Initializable {
     public void choiceMember() {
         memberPane.setStyle("-fx-background-color:#ffc107;-fx-background-radius: 5px 5px 0px 0px;");
         calculatorPane.setStyle("-fx-background-color:#455a64;-fx-background-radius: 5px 5px 0px 0px;");
+        vip_pane.setStyle("-fx-background-color:#455a64;-fx-background-radius: 5px 5px 0px 0px;");
         infomarket.setVisible(true);
         new FadeIn(infomarket).play();
         new FadeOut(pane_cover).play();
@@ -478,6 +494,7 @@ public class MainController implements Initializable {
     public void choiceCalculator() {
         calculatorPane.setStyle("-fx-background-color:#ffc107;-fx-background-radius: 5px 5px 0px 0px;");
         memberPane.setStyle("-fx-background-color:#455a64;-fx-background-radius: 5px 5px 0px 0px;");
+        vip_pane.setStyle("-fx-background-color:#455a64;-fx-background-radius: 5px 5px 0px 0px;");
         infomarket.setVisible(false);
 
     }
@@ -486,16 +503,27 @@ public class MainController implements Initializable {
     JFXButton memberButton;
     @FXML
     JFXButton calculatorButton;
+    @FXML
+    JFXButton vip_button;
+    @FXML
+    Pane vip_pane;
 
     public void handleChoice(ActionEvent event) {
         if (event.getSource() == memberButton) {
             choiceMember();
             closeManagement();
             closeManagement();
-        }
-        if (event.getSource() == calculatorButton) {
+            ac_vip.setVisible(false);
+        } else if (event.getSource() == calculatorButton) {
             choiceCalculator();
             openManagement();
+            ac_vip.setVisible(false);
+        } else if (event.getSource() == vip_button) {
+            memberPane.setStyle("-fx-background-color:#455a64;-fx-background-radius: 5px 5px 0px 0px;");
+            calculatorPane.setStyle("-fx-background-color:#455a64;-fx-background-radius: 5px 5px 0px 0px;");
+            vip_pane.setStyle("-fx-background-color:#ffc107;-fx-background-radius: 5px 5px 0px 0px;");
+            ac_vip.setVisible(true);
+
         }
     }
 
@@ -536,16 +564,18 @@ public class MainController implements Initializable {
         String totalSalary = Double.toString(totalSalary());
         String total = " UPDATE salaryPersonel SET `" + month + "` = " + totalSalary + " WHERE id = " + id + ";";
         //System.out.println(total);
-//        String verifyAdd = "UPDATE userCashier SET salary = " +
-//                tf_salary.getText() + ", days_off = " +
-//                tf_off.getText() + ", days_late = " +
-//                tf_late.getText() + ", bonus = " +
-//                tf_bonus.getText() + " WHERE id = " + id + ";";
-
+        String updateSalary = "UPDATE userCashier SET salary = " +
+                tf_salary.getText() + ", days_off = " +
+                tf_off.getText() + ", days_late = " +
+                tf_late.getText() + ", bonus = " +
+                tf_bonus.getText() + " WHERE id = " + id + ";";
 
 
         try {
             preparedStatement = connection.prepareStatement(total);
+            preparedStatement.execute();
+            preparedStatement.close();
+            preparedStatement = connection.prepareStatement(updateSalary);
             preparedStatement.execute();
 
         } catch (Exception ex) {
@@ -562,7 +592,7 @@ public class MainController implements Initializable {
         int off = Integer.parseInt(tf_off.getText());
         int late = Integer.parseInt(tf_late.getText());
         double bonus = Double.parseDouble(tf_bonus.getText());
-        return salary - off * 35 - late * 10 + bonus;
+        return salary - off * 200000 - late * 30000 + bonus;
     }
 
     @FXML
@@ -648,10 +678,10 @@ public class MainController implements Initializable {
         int mo = LocalDate.now().getMonthValue();
         Month m = monthProgress.get(mo - 1);
         month.setText(Integer.toString(mo));
-        lb_import.setText(Double.toString(m.importTotal));
-        lb_salary.setText(Double.toString(m.personnelSalary));
-        lb_tax.setText(Double.toString(m.tax));
-        lb_other.setText(Double.toString(m.other));
+        lb_import.setText(Double.toString(m.importTotal/1000));
+        lb_salary.setText(Double.toString(m.personnelSalary/1000));
+        lb_tax.setText(Double.toString(m.tax/1000));
+        lb_other.setText(Double.toString(m.other/1000));
         ac_progress.setVisible(true);
         ac_manage.setVisible(true);
 
@@ -660,6 +690,22 @@ public class MainController implements Initializable {
     public void closeManagement() {
         ac_progress.setVisible(false);
         ac_manage.setVisible(false);
+    }
+
+    public void detailSalary(ActionEvent event) throws IOException {
+        Stage stage = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("salary.fxml"));
+        Parent root = fxmlLoader.load();
+        Scene scene = new Scene(root);
+        String css = Objects.requireNonNull(Main.class.getResource("main.css")).toExternalForm();
+
+        stage.initStyle(StageStyle.TRANSPARENT);
+        scene.setFill(Color.TRANSPARENT);
+        scene.getStylesheets().add(css);
+
+        stage.centerOnScreen();
+        stage.setScene(scene);
+        stage.show();
     }
 
 }
