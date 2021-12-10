@@ -1,0 +1,77 @@
+.root {
+    -fx-background-color:transparent;
+    -fx-background-radius:10;
+}
+
+
+.text-field {
+    -fx-border-width: 0px 0px 2px 0px;
+    -fx-background-color: transparent;
+    -fx-border-color: #f9f9f9;
+    -fx-text-fill: #f9f9f9;
+    -fx-font-family: "JetBrains Mono";
+    -fx-font-weight: bold;
+    -fx-font-size:15px;
+}
+
+.text-field:hover {
+    -fx-border-color: #ffc107;
+}
+
+.text-field:focused {
+    -fx-border-color: #ffc107;
+}
+
+
+#ac{
+    -fx-background-radius:10;
+}
+
+#ac_add {
+    -fx-background-radius:10;
+}
+
+#ac_start {
+    -fx-background-radius:5px 5px 5px 5px;
+}
+
+
+.table-view {
+    -fx-background-color:#f9f9f9;
+    -fx-background-radius: 10px 10px 0px 0px;
+
+}
+
+.table-view .column-header-background {
+    -fx-background-color:#455a64;
+    -fx-background-radius:10 10 0 0;
+    -fx-background-insets: 0 0 0 0;
+
+}
+
+.table-view .column-header, .table-view .filler {
+    -fx-size:50px;
+    -fx-border-width: 0 0 10 0;
+    -fx-background-color:transparent;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill:#f9f9f9;
+}
+
+#infomarket {
+    -fx-background-color: #455a64;
+    -fx-background-radius: 10;
+}
+
+#timejoin{
+    -fx-background-color:transparent;
+}
+
+#born{
+    -fx-background-color:transparent;
+}
+
+#ac_work {
+    -fx-background-radius: 10;
+}

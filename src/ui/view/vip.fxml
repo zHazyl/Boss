@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="439.0" prefWidth="639.0" style="-fx-background-color: ffc107;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.VipController">
+   <children>
+      <TableView fx:id="customerTable" layoutX="14.0" layoutY="60.0" prefHeight="365.0" prefWidth="616.0">
+         <columns>
+            <TableColumn fx:id="idCol" prefWidth="42.0" text="ID" />
+            <TableColumn fx:id="firstNameCol" prefWidth="138.0" text="First name" />
+            <TableColumn fx:id="lastNameCol" prefWidth="75.0" text="Name" />
+            <TableColumn fx:id="rankCol" prefWidth="68.0" text="Rank" />
+            <TableColumn fx:id="pointCol" prefWidth="81.0" text="Point" />
+            <TableColumn fx:id="phoneCol" prefWidth="224.0" text="Phone" />
+         </columns>
+      </TableView>
+      <Label layoutX="436.0" layoutY="16.0" text="Customer list">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Label>
+      <FontAwesomeIconView fill="#f9f9f9" glyphName="USER_PLUS" layoutX="16.0" layoutY="42.0" size="30" />
+      <FontAwesomeIconView fill="#f9f9f9" glyphName="REFRESH" layoutX="52.0" layoutY="42.0" size="30" />
+      <JFXButton focusTraversable="false" layoutX="14.0" layoutY="16.0" onAction="#openAdd" prefHeight="30.0" prefWidth="34.0" style="-fx-background-color: transparent; -fx-text-fill: transparent;" text="X" textFill="#f9f9f9">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </JFXButton>
+      <JFXButton focusTraversable="false" layoutX="48.0" layoutY="16.0" onAction="#refreshTable" prefHeight="30.0" prefWidth="34.0" style="-fx-background-color: transparent; -fx-text-fill: transparent;" text="X" textFill="#f9f9f9">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </JFXButton>
+      <FontAwesomeIconView fill="#f9f9f9" glyphName="TRASH" layoutX="83.0" layoutY="42.0" size="30" />
+      <JFXButton fx:id="deletePerson" focusTraversable="false" layoutX="79.0" layoutY="16.0" onAction="#delete" prefHeight="30.0" prefWidth="34.0" style="-fx-background-color: transparent; -fx-text-fill: transparent;" text="X" textFill="#f9f9f9">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>

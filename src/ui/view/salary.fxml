@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="ac_work" prefHeight="528.0" prefWidth="450.0" style="-fx-background-color: #455a64;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.SalaryController">
+   <children>
+      <Label fx:id="title_label1" layoutX="154.0" layoutY="34.0" style="-fx-font-weight: bold;" text="Salary" textFill="#f9f9f9">
+         <font>
+            <Font size="40.0" />
+         </font>
+      </Label>
+      <JFXButton fx:id="button_update1" focusTraversable="false" layoutX="71.0" layoutY="445.0" onAction="#update" prefHeight="51.0" prefWidth="312.0" style="-fx-background-color: ffc107; -fx-font-weight: bold; -fx-font-size: 20px;" text="update" textFill="#455a64">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </JFXButton>
+      <TableView fx:id="salaryTable" layoutX="46.0" layoutY="114.0" prefHeight="301.0" prefWidth="362.0">
+        <columns>
+          <TableColumn fx:id="id" prefWidth="157.0" text="ID" />
+            <TableColumn fx:id="salary" prefWidth="204.0" text="Salary" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

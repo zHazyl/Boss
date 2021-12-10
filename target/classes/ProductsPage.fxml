@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.controller.ProductsPageController">
+   <top>
+      <AnchorPane prefHeight="80.0" prefWidth="900.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="deleteProductBtn" layoutX="791.0" layoutY="28.0" mnemonicParsing="false" onAction="#deleteProductBtnClicked" text="Delete Product" AnchorPane.rightAnchor="20.0" />
+            <VBox alignment="CENTER" layoutX="562.0" layoutY="14.0" prefHeight="80.0" prefWidth="150.0" spacing="10.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label text="Add quantity" />
+                  <HBox alignment="CENTER" spacing="10.0">
+                     <children>
+                        <TextField fx:id="txtAddQuantity" prefHeight="25.0" prefWidth="90.0" />
+                        <Button fx:id="addQuantityBtn" mnemonicParsing="false" onAction="#addQuantityBtnClicked" text="Add" />
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </VBox>
+            <VBox alignment="CENTER" layoutX="400.0" layoutY="-60.0" prefHeight="80.0" prefWidth="200.0" spacing="10.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label text="Change Export Price" />
+                  <HBox alignment="CENTER" spacing="10.0">
+                     <children>
+                        <TextField fx:id="txtChangeExportPrice" />
+                        <Button fx:id="changeImportPriceBtn" mnemonicParsing="false" onAction="#changeImportPriceBtnClicked" prefHeight="25.0" prefWidth="85.0" text="Change" />
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </VBox>
+            <VBox alignment="CENTER" layoutX="140.0" layoutY="-40.0" prefHeight="80.0" prefWidth="350.0" spacing="10.0" AnchorPane.rightAnchor="500.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label text="Search" />
+                  <TextField fx:id="txtFilterName" />
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </VBox>
+         </children></AnchorPane>
+   </top>
+   <bottom>
+      <AnchorPane prefHeight="80.0" prefWidth="900.0" style="-fx-background-color: #455455;" BorderPane.alignment="CENTER">
+         <children>
+            <ComboBox fx:id="tableNameCbBox" layoutX="23.0" layoutY="28.0" prefHeight="25.0" prefWidth="120.0" AnchorPane.leftAnchor="20.0" />
+            <TextField fx:id="txtName" layoutX="115.0" layoutY="28.0" prefHeight="25.0" prefWidth="200.0" promptText="Name" AnchorPane.leftAnchor="150.0" />
+            <TextField fx:id="txtCountPerUnit" layoutX="338.0" layoutY="28.0" prefHeight="25.0" prefWidth="100.0" promptText="Count Per Unit" AnchorPane.leftAnchor="360.0" />
+            <TextField fx:id="txtQty" layoutX="442.0" layoutY="28.0" prefHeight="25.0" prefWidth="60.0" promptText="Qty" AnchorPane.leftAnchor="470.0" />
+            <TextField fx:id="txtImportPrice" layoutX="513.0" layoutY="28.0" prefHeight="25.0" prefWidth="100.0" promptText="Import Price" AnchorPane.leftAnchor="540.0" />
+            <TextField fx:id="txtExportPrice" layoutX="601.0" layoutY="28.0" prefHeight="25.0" prefWidth="100.0" promptText="Export Price" AnchorPane.leftAnchor="650.0" />
+            <Button fx:id="addNewProductBtn" layoutX="728.0" layoutY="28.0" mnemonicParsing="false" onAction="#addNewProductBtnClicked" text="Add New Product" AnchorPane.leftAnchor="770.0" />
+         </children></AnchorPane>
+   </bottom>
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <TabPane fx:id="tabPane" layoutX="-14.0" layoutY="-14.0" prefHeight="440.0" prefWidth="900.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <tabs>
+                <Tab fx:id="meatsTab" closable="false" text="meats" />
+                  <Tab fx:id="fruitsTab" text="fruits">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                    </content>
+                  </Tab>
+                  <Tab fx:id="juiceTab" text="juice">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                    </content>
+                  </Tab>
+                  <Tab fx:id="coffeeTab" text="coffee">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                    </content>
+                  </Tab>
+                  <Tab fx:id="teaTab" text="tea">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                    </content>
+                  </Tab>
+                  <Tab fx:id="waterTab" text="water">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                    </content>
+                  </Tab>
+                  <Tab fx:id="soft_drinksTab" text="soft_drinks">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                    </content>
+                  </Tab>
+                  <Tab fx:id="beerTab" text="beer">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                    </content>
+                  </Tab>
+                  <Tab fx:id="wineTab" text="wine">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                    </content>
+                  </Tab>
+              </tabs>
+            </TabPane>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>
